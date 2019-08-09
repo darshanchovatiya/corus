@@ -1,0 +1,35 @@
+{% extends 'basic.html' %}
+{% load render_table from django_tables2 %}
+{% render_table table %}
+{% block body %}
+{% load static %}
+<div class="message"style="margin-top: 160px">
+  {% if messages %}
+    {% for  message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            {{message}}
+        </div>
+    {% endfor %}
+  {% endif %}</div>
+<!--<div class="table mt-6" style="margin-top: 160px" >{% render_table istekler %}</div>-->
+<div class="table-responsive" >
+  <table class="table table-hover">
+    <tr>
+      <th>Video Name</th>
+      <th>Video</th>
+      <th>Video Discription</th>
+      <th>Delete</th>
+    </tr>
+    {% for i in ist %}      
+          <tr class="danger">
+            <td>{{i.v_name}}</td>
+            <td>{{i.video}}</td>
+            <td>{{i.discr}}</td>            
+            <td><a href="vid{{i.e_id}}"><button type="submit" value="{{i.e_id}}" id="cancel" class="btn btn-danger" ><i class="fas fa-times"></i></button></a></td>
+          </tr>
+      {% endif %}
+{% endfor %}
+  </table>
+</div>
+
+{% endblock %}
